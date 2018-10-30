@@ -374,7 +374,7 @@ func (attacher *testPluginAttacher) Attach(spec *volume.Spec, nodeName types.Nod
 	if spec == nil {
 		*attacher.ErrorEncountered = true
 		glog.Errorf("Attach called with nil volume spec")
-		return "", fmt.Errorf("Attach called with nil volume spec")
+		return "", fmt.Errorf("nil volume spec")
 	}
 	attacher.attachedVolumeMap[string(nodeName)] = append(attacher.attachedVolumeMap[string(nodeName)], spec.Name())
 	return spec.Name(), nil
@@ -390,7 +390,7 @@ func (attacher *testPluginAttacher) WaitForAttach(spec *volume.Spec, devicePath 
 	if spec == nil {
 		*attacher.ErrorEncountered = true
 		glog.Errorf("WaitForAttach called with nil volume spec")
-		return "", fmt.Errorf("WaitForAttach called with nil volume spec")
+		return "", fmt.Errorf("nil volume spec")
 	}
 	fakePath := fmt.Sprintf("%s/%s", devicePath, spec.Name())
 	return fakePath, nil
@@ -402,7 +402,7 @@ func (attacher *testPluginAttacher) GetDeviceMountPath(spec *volume.Spec) (strin
 	if spec == nil {
 		*attacher.ErrorEncountered = true
 		glog.Errorf("GetDeviceMountPath called with nil volume spec")
-		return "", fmt.Errorf("GetDeviceMountPath called with nil volume spec")
+		return "", fmt.Errorf("nil volume spec")
 	}
 	return "", nil
 }
@@ -413,7 +413,7 @@ func (attacher *testPluginAttacher) MountDevice(spec *volume.Spec, devicePath st
 	if spec == nil {
 		*attacher.ErrorEncountered = true
 		glog.Errorf("MountDevice called with nil volume spec")
-		return fmt.Errorf("MountDevice called with nil volume spec")
+		return fmt.Errorf("nil volume spec")
 	}
 	return nil
 }

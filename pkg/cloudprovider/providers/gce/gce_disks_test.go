@@ -738,9 +738,9 @@ func (manager *FakeServiceManager) CreateRegionalDiskOnCloudProvider(
 		manager.regionalDisks[diskToCreateV1.Name] = zones
 		return nil
 	case targetBeta:
-		return fmt.Errorf("RegionalDisk CreateDisk op not supported in beta.")
+		return fmt.Errorf("not supported in beta")
 	case targetAlpha:
-		return fmt.Errorf("RegionalDisk CreateDisk op not supported in alpha.")
+		return fmt.Errorf("not supported in alpha")
 	default:
 		return fmt.Errorf("unexpected type: %T", t)
 	}

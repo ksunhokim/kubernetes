@@ -66,8 +66,8 @@ var cleanUpDummyVMLock sync.RWMutex
 
 // Error Messages
 const (
-	MissingUsernameErrMsg = "Username is missing"
-	MissingPasswordErrMsg = "Password is missing"
+	MissingUsernameErrMsg = "username is missing"
+	MissingPasswordErrMsg = "password is missing"
 )
 
 // Error constants
@@ -329,15 +329,15 @@ func populateVsphereInstanceMap(cfg *VSphereConfig) (map[string]*VSphereInstance
 
 		if cfg.Global.WorkingDir == "" {
 			glog.Error("Global.WorkingDir is empty!")
-			return nil, errors.New("Global.WorkingDir is empty!")
+			return nil, errors.New("workingDir is empty")
 		}
 		if cfg.Global.VCenterIP == "" {
 			glog.Error("Global.VCenterIP is empty!")
-			return nil, errors.New("Global.VCenterIP is empty!")
+			return nil, errors.New("vCenterIP is empty")
 		}
 		if cfg.Global.Datacenter == "" {
 			glog.Error("Global.Datacenter is empty!")
-			return nil, errors.New("Global.Datacenter is empty!")
+			return nil, errors.New("datacenter is empty")
 		}
 		cfg.Workspace.VCenterIP = cfg.Global.VCenterIP
 		cfg.Workspace.Datacenter = cfg.Global.Datacenter
@@ -488,7 +488,7 @@ func buildVSphereFromConfig(cfg VSphereConfig) (*VSphere, error) {
 		cfg.Disk.SCSIControllerType = vclib.PVSCSIControllerType
 	} else if !vclib.CheckControllerSupported(cfg.Disk.SCSIControllerType) {
 		glog.Errorf("%v is not a supported SCSI Controller type. Please configure 'lsilogic-sas' OR 'pvscsi'", cfg.Disk.SCSIControllerType)
-		return nil, errors.New("Controller type not supported. Please configure 'lsilogic-sas' OR 'pvscsi'")
+		return nil, errors.New("controller type not supported. Please configure 'lsilogic-sas' OR 'pvscsi'")
 	}
 	if cfg.Global.WorkingDir != "" {
 		cfg.Global.WorkingDir = path.Clean(cfg.Global.WorkingDir)
@@ -580,7 +580,7 @@ func (vs *VSphere) getVSphereInstanceForServer(vcServer string, ctx context.Cont
 	vsphereIns, ok := vs.vsphereInstanceMap[vcServer]
 	if !ok {
 		glog.Errorf("cannot find vcServer %q in cache. VC not found!!!", vcServer)
-		return nil, errors.New(fmt.Sprintf("Cannot find node %q in vsphere configuration map", vcServer))
+		return nil, errors.New(fmt.Sprintf("cannot find node %q in vsphere configuration map", vcServer))
 	}
 	// Ensure client is logged in and session is valid
 	err := vs.nodeManager.vcConnect(ctx, vsphereIns)
