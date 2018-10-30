@@ -234,7 +234,7 @@ func (b *glusterfsMounter) CanMount() error {
 	switch runtime.GOOS {
 	case "linux":
 		if _, err := exe.Run("test", "-x", gciLinuxGlusterMountBinaryPath); err != nil {
-			return fmt.Errorf("Required binary %s is missing", gciLinuxGlusterMountBinaryPath)
+			return fmt.Errorf("required binary %s is missing", gciLinuxGlusterMountBinaryPath)
 		}
 	}
 	return nil
@@ -411,7 +411,7 @@ func getVolumeSource(spec *volume.Spec) (*v1.GlusterfsVolumeSource, bool, error)
 		return spec.PersistentVolume.Spec.Glusterfs, spec.ReadOnly, nil
 	}
 
-	return nil, false, fmt.Errorf("Spec does not reference a Glusterfs volume type")
+	return nil, false, fmt.Errorf("spec does not reference a Glusterfs volume type")
 }
 
 func (plugin *glusterfsPlugin) NewProvisioner(options volume.VolumeOptions) (volume.Provisioner, error) {
@@ -677,7 +677,7 @@ func (d *glusterfsVolumeDeleter) Delete() error {
 	var dynamicEndpoint, dynamicNamespace string
 	if pvSpec.ClaimRef == nil {
 		glog.Errorf("ClaimRef is nil")
-		return fmt.Errorf("ClaimRef is nil")
+		return fmt.Errorf("invalid nil for ClaimRef")
 	}
 	if pvSpec.ClaimRef.Namespace == "" {
 		glog.Errorf("namespace is nil")

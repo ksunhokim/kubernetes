@@ -21,10 +21,11 @@ package util
 import (
 	"errors"
 	"fmt"
-	"github.com/golang/glog"
 	"path"
 	"strconv"
 	"strings"
+
+	"github.com/golang/glog"
 )
 
 // FindMultipathDeviceForDevice given a device name like /dev/sdx, find the devicemapper parent
@@ -61,7 +62,7 @@ func findDeviceForPath(path string, io IoUtil) (string, error) {
 	if len(parts) == 3 && strings.HasPrefix(parts[1], "dev") {
 		return parts[2], nil
 	}
-	return "", errors.New("Illegal path for device " + devicePath)
+	return "", errors.New("illegal path for device " + devicePath)
 }
 
 // FindSlaveDevicesOnMultipath given a dm name like /dev/dm-1, find all devices

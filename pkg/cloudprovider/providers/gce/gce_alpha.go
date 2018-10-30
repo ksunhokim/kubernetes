@@ -46,7 +46,7 @@ func NewAlphaFeatureGate(features []string) *AlphaFeatureGate {
 
 func (gce *GCECloud) alphaFeatureEnabled(feature string) error {
 	if !gce.AlphaFeatureGate.Enabled(feature) {
-		return fmt.Errorf("alpha feature %q is not enabled.", feature)
+		return fmt.Errorf("alpha feature %q is not enabled", feature)
 	}
 	return nil
 }

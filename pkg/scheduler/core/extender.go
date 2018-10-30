@@ -349,7 +349,7 @@ func (h *HTTPExtender) Bind(binding *v1.Binding) error {
 	var result schedulerapi.ExtenderBindingResult
 	if !h.IsBinder() {
 		// This shouldn't happen as this extender wouldn't have become a Binder.
-		return fmt.Errorf("Unexpected empty bindVerb in extender")
+		return fmt.Errorf("unexpected empty bindVerb in extender")
 	}
 	req := &schedulerapi.ExtenderBindingArgs{
 		PodName:      binding.Name,
@@ -394,7 +394,7 @@ func (h *HTTPExtender) send(action string, args interface{}, result interface{})
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("Failed %v with extender at URL %v, code %v", action, url, resp.StatusCode)
+		return fmt.Errorf("failed %v with extender at URL %v, code %v", action, url, resp.StatusCode)
 	}
 
 	return json.NewDecoder(resp.Body).Decode(result)

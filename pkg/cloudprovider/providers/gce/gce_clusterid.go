@@ -119,7 +119,7 @@ func (ci *ClusterID) GetID() (string, error) {
 	ci.idLock.RLock()
 	defer ci.idLock.RUnlock()
 	if ci.clusterID == nil {
-		return "", errors.New("Could not retrieve cluster id")
+		return "", errors.New("could not retrieve cluster id")
 	}
 
 	// If provider ID is set, (Federation is enabled) use this field
@@ -141,7 +141,7 @@ func (ci *ClusterID) GetFederationId() (string, bool, error) {
 	ci.idLock.RLock()
 	defer ci.idLock.RUnlock()
 	if ci.clusterID == nil {
-		return "", false, errors.New("Could not retrieve cluster id")
+		return "", false, errors.New("could not retrieve cluster id")
 	}
 
 	// If provider ID is not set, return false
@@ -157,7 +157,7 @@ func (ci *ClusterID) GetFederationId() (string, bool, error) {
 // before the watch has begun.
 func (ci *ClusterID) getOrInitialize() error {
 	if ci.store == nil {
-		return errors.New("GCECloud.ClusterID is not ready. Call Initialize() before using.")
+		return errors.New("not ready. Call Initialize() before using")
 	}
 
 	if ci.clusterID != nil {
@@ -210,7 +210,7 @@ func (ci *ClusterID) getConfigMap() (bool, error) {
 
 	m, ok := item.(*v1.ConfigMap)
 	if !ok || m == nil {
-		err = fmt.Errorf("Expected v1.ConfigMap, item=%+v, typeIsOk=%v", item, ok)
+		err = fmt.Errorf("expected v1.ConfigMap, item=%+v, typeIsOk=%v", item, ok)
 		glog.Error(err)
 		return false, err
 	}

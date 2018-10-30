@@ -151,7 +151,7 @@ func (dc *Datacenter) GetDatastoreByPath(ctx context.Context, vmDiskPath string)
 	isSuccess := datastorePathObj.FromString(vmDiskPath)
 	if !isSuccess {
 		glog.Errorf("Failed to parse vmDiskPath: %s", vmDiskPath)
-		return nil, errors.New("Failed to parse vmDiskPath")
+		return nil, errors.New("failed to parse vmDiskPath")
 	}
 
 	return dc.GetDatastoreByName(ctx, datastorePathObj.Datastore)
@@ -239,7 +239,7 @@ func (dc *Datacenter) GetDatastoreMoList(ctx context.Context, dsObjList []*Datas
 	var dsRefs []types.ManagedObjectReference
 	if len(dsObjList) < 1 {
 		glog.Errorf("Datastore Object list is empty")
-		return nil, fmt.Errorf("Datastore Object list is empty")
+		return nil, fmt.Errorf("datastore Object list is empty")
 	}
 
 	for _, dsObj := range dsObjList {

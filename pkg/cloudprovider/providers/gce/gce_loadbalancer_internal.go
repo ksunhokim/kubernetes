@@ -39,7 +39,7 @@ func (gce *GCECloud) ensureInternalLoadBalancer(clusterName, clusterID string, s
 	nm := types.NamespacedName{Name: svc.Name, Namespace: svc.Namespace}
 	ports, protocol := getPortsAndProtocol(svc.Spec.Ports)
 	if protocol != v1.ProtocolTCP && protocol != v1.ProtocolUDP {
-		return nil, fmt.Errorf("Invalid protocol %s, only TCP and UDP are supported", string(protocol))
+		return nil, fmt.Errorf("invalid protocol %s, only TCP and UDP are supported", string(protocol))
 	}
 	scheme := cloud.SchemeInternal
 	loadBalancerName := gce.GetLoadBalancerName(context.TODO(), clusterName, svc)

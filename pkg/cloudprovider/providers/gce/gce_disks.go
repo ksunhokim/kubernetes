@@ -207,11 +207,11 @@ func (manager *gceServiceManager) GetDiskFromCloudProvider(
 	zone string,
 	diskName string) (*GCEDisk, error) {
 	if zone == "" {
-		return nil, fmt.Errorf("Can not fetch disk %q. Zone is empty.", diskName)
+		return nil, fmt.Errorf("can not fetch disk %q. Zone is empty", diskName)
 	}
 
 	if diskName == "" {
-		return nil, fmt.Errorf("Can not fetch disk. Zone is specified (%q). But disk name is empty.", zone)
+		return nil, fmt.Errorf("can not fetch disk. Zone is specified (%q). But disk name is empty", zone)
 	}
 
 	ctx, cancel := cloud.ContextWithCallTimeout()

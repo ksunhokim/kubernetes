@@ -81,10 +81,10 @@ func (name KubernetesVolumeID) MapToAWSVolumeID() (EBSVolumeID, error) {
 	url, err := url.Parse(s)
 	if err != nil {
 		// TODO: Maybe we should pass a URL into the Volume functions
-		return "", fmt.Errorf("Invalid disk name (%s): %v", name, err)
+		return "", fmt.Errorf("invalid disk name (%s): %v", name, err)
 	}
 	if url.Scheme != "aws" {
-		return "", fmt.Errorf("Invalid scheme for AWS volume (%s)", name)
+		return "", fmt.Errorf("invalid scheme for AWS volume (%s)", name)
 	}
 
 	awsID := url.Path
@@ -93,7 +93,7 @@ func (name KubernetesVolumeID) MapToAWSVolumeID() (EBSVolumeID, error) {
 	// We sanity check the resulting volume; the two known formats are
 	// vol-12345678 and vol-12345678abcdef01
 	if !awsVolumeRegMatch.MatchString(awsID) {
-		return "", fmt.Errorf("Invalid format for AWS volume (%s)", name)
+		return "", fmt.Errorf("invalid format for AWS volume (%s)", name)
 	}
 
 	return EBSVolumeID(awsID), nil
@@ -136,7 +136,7 @@ func (c *Cloud) checkIfAttachedToNode(diskName KubernetesVolumeID, nodeName type
 		// This should never happen but if it does it could mean there was a race and instance
 		// has been deleted
 		if err != nil {
-			fetchErr := fmt.Errorf("Error fetching instance %s for volume %s", instanceID, diskName)
+			fetchErr := fmt.Errorf("error fetching instance %s for volume %s", instanceID, diskName)
 			glog.Warning(fetchErr)
 			return awsDiskInfo, false, fetchErr
 		}

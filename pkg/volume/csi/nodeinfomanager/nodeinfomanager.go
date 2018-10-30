@@ -338,7 +338,7 @@ func (nim *nodeInfoManager) updateCSINodeInfo(
 		return nim.updateNodeInfoObject(nodeInfo, driverName, driverNodeID, topology)
 	})
 	if retryErr != nil {
-		return fmt.Errorf("CSINodeInfo update failed: %v", retryErr)
+		return fmt.Errorf("CSI NodeInfo update failed: %v", retryErr)
 	}
 	return nil
 }
@@ -484,7 +484,7 @@ func (nim *nodeInfoManager) removeCSINodeInfo(csiDriverName string) error {
 
 	})
 	if retryErr != nil {
-		return fmt.Errorf("CSINodeInfo update failed: %v", retryErr)
+		return fmt.Errorf("CSI NodeInfo update failed: %v", retryErr)
 	}
 	return nil
 }

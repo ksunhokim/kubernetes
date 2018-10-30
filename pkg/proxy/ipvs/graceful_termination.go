@@ -21,6 +21,7 @@ import (
 	"time"
 
 	"fmt"
+
 	"github.com/golang/glog"
 	"k8s.io/apimachinery/pkg/util/wait"
 	utilipvs "k8s.io/kubernetes/pkg/util/ipvs"
@@ -170,12 +171,12 @@ func (m *GracefulTerminationManager) deleteRsFunc(rsToDelete *listItem) (bool, e
 			glog.Infof("Deleting rs: %s", rsToDelete.String())
 			err := m.ipvs.DeleteRealServer(rsToDelete.VirtualServer, rs)
 			if err != nil {
-				return false, fmt.Errorf("Delete destination %q err: %v", rs.String(), err)
+				return false, fmt.Errorf("delete destination %q err: %v", rs.String(), err)
 			}
 			return true, nil
 		}
 	}
-	return true, fmt.Errorf("Failed to delete rs %q, can't find the real server", rsToDelete.String())
+	return true, fmt.Errorf("failed to delete rs %q, can't find the real server", rsToDelete.String())
 }
 
 func (m *GracefulTerminationManager) tryDeleteRs() {

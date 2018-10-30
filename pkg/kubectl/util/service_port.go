@@ -46,7 +46,7 @@ func LookupContainerPortNumberByServicePort(svc v1.Service, pod v1.Pod, port int
 			return LookupContainerPortNumberByName(pod, svcportspec.TargetPort.String())
 		}
 	}
-	return port, fmt.Errorf("Service %s does not have a service port %d", svc.Name, port)
+	return port, fmt.Errorf("service %s does not have a service port %d", svc.Name, port)
 }
 
 // LookupServicePortNumberByName find service port number by its named port name
@@ -57,5 +57,5 @@ func LookupServicePortNumberByName(svc v1.Service, name string) (int32, error) {
 		}
 	}
 
-	return int32(-1), fmt.Errorf("Service '%s' does not have a named port '%s'", svc.Name, name)
+	return int32(-1), fmt.Errorf("service '%s' does not have a named port '%s'", svc.Name, name)
 }
