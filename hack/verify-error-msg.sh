@@ -23,4 +23,4 @@ source "${KUBE_ROOT}/hack/lib/init.sh"
 
 kube::golang::verify_go_version
 
-go run "${KUBE_ROOT}/verify-error-msg/main.go" $KUBE_ROOT
+go run "${KUBE_ROOT}/hack/verify-error-msg/main.go" $KUBE_ROOT
