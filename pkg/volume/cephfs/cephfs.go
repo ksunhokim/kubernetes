@@ -423,7 +423,7 @@ func (cephfsVolume *cephfs) execFuseMount(mountpoint string) error {
 	command := exec.Command("ceph-fuse", mountArgs...)
 	output, err := command.CombinedOutput()
 	if err != nil || !(strings.Contains(string(output), "starting fuse")) {
-		return fmt.Errorf("Ceph-fuse failed: %v\narguments: %s\nOutput: %s\n", err, mountArgs, string(output))
+		return fmt.Errorf("ceph-fuse failed: %v arguments: %s Output: %s", err, mountArgs, string(output))
 	}
 
 	return nil

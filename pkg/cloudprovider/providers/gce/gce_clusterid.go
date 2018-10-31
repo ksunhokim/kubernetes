@@ -157,7 +157,7 @@ func (ci *ClusterID) GetFederationId() (string, bool, error) {
 // before the watch has begun.
 func (ci *ClusterID) getOrInitialize() error {
 	if ci.store == nil {
-		return errors.New("not ready. Call Initialize() before using")
+		return errors.New("ClusterID is not ready. Call Initialize() before using")
 	}
 
 	if ci.clusterID != nil {

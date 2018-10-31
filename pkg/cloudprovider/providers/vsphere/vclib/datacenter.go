@@ -239,7 +239,7 @@ func (dc *Datacenter) GetDatastoreMoList(ctx context.Context, dsObjList []*Datas
 	var dsRefs []types.ManagedObjectReference
 	if len(dsObjList) < 1 {
 		glog.Errorf("Datastore Object list is empty")
-		return nil, fmt.Errorf("datastore Object list is empty")
+		return nil, fmt.Errorf("Datastore Object list is empty")
 	}
 
 	for _, dsObj := range dsObjList {

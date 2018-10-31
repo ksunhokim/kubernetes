@@ -22,13 +22,14 @@ import (
 	"os"
 	"path"
 
+	"time"
+
 	"github.com/golang/glog"
 	api "k8s.io/api/core/v1"
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	kstrings "k8s.io/kubernetes/pkg/util/strings"
 	"k8s.io/kubernetes/pkg/volume"
-	"time"
 )
 
 const (
@@ -95,7 +96,7 @@ func getCSISourceFromSpec(spec *volume.Spec) (*api.CSIPersistentVolumeSource, er
 		return spec.PersistentVolume.Spec.CSI, nil
 	}
 
-	return nil, fmt.Errorf("CSIPersistentVolumeSource not defined in spec")
+	return nil, fmt.Errorf("CSI PersistentVolumeSource not defined in spec")
 }
 
 func getReadOnlyFromSpec(spec *volume.Spec) (bool, error) {
@@ -104,7 +105,7 @@ func getReadOnlyFromSpec(spec *volume.Spec) (bool, error) {
 		return spec.ReadOnly, nil
 	}
 
-	return false, fmt.Errorf("CSIPersistentVolumeSource not defined in spec")
+	return false, fmt.Errorf("CSI PersistentVolumeSource not defined in spec")
 }
 
 // log prepends log string with `kubernetes.io/csi`
